@@ -1,16 +1,24 @@
-export default function BeerCard({name, image, avgRating }) {
-return (
-    <div className="beer-card">
+import { useState } from "react";
+
+export default function BeerCard({name, image, avgRating, setSelectedBeer }) {
+const [hidden, setHidden] = useState(false)
+return(
+    <div className="beer-card" onClick={(setSelectedBeer(name))}>
+    {/* <div className="close-button">x</div> */}
     <div className="beer-image">
-    <img src={image} alt={name} 
-    onError={(e) =>{
-        e.target.onerror = null;
-        e.target.src = "https://www.thecarycompany.com/media/catalog/product/3/0/30wlcc_1.jpg?quality=100&fit=bounds&height=700&width=700&canvas=700,700"
-    }}
-    />
+    <img src={image} alt={name}
+    onError={(e) => {
+    e.target.onerror = null;
+     e.target.src = "https://www.totalwine.com/media/sys_master/cmsmedia/hff/h0e/8979036078110.png"
+
+    }}/>
+    
     </div>
-    <h2>{name}</h2>
-    <p style={{marginTop:0, overflow: "hidden", width: avgRating + "em"}}>⭐️⭐️⭐️⭐️⭐️</p>
+<h2>{name}</h2>
+<div className="rating">
+<p className="grey-stars">⭐️⭐️⭐️⭐️⭐️</p>
+<p className="yellow-stars" style={{ width: avgRating + "em"}}>⭐️⭐️⭐️⭐️⭐️</p>
     </div>
+</div>
 )
 }
